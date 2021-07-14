@@ -1,0 +1,26 @@
+{
+  "name": "team-builder",
+  "version": "1.0.0",
+  "description": "Team managers can use this to quickly view their team's information including email and GitHub profiles",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slawless08/Team-builder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slawless08/Team-builder/issues"
+  },
+  "dependencies": {
+    "inquirer": "^6.5.0"
+  },
+  "homepage": "https://github.com/slawless08/Team-builder#readme"
+}
