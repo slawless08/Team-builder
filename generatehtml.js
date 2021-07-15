@@ -29,7 +29,7 @@ function generateHtml(data) {
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Employee ID: ${element.empId}</li>
-                <li class="list-group-item">Email: ${element.empEmail}</li>
+                <li class="list-group-item">Email: <a href="mailto:${element.empEmail}">${element.empEmail}</a></li>
                 <li class="list-group-item">${element.officeNumber}</li>
             </ul>
         </div>`;
@@ -44,8 +44,8 @@ function generateHtml(data) {
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Employee ID: ${element.empId}</li>
-                <li class="list-group-item">Email: ${element.empEmail}</li>
-                <li class="list-group-item">${element.github}</li>
+                <li class="list-group-item">Email: <a href="mailto:${element.empEmail}">${element.empEmail}</a></li>
+                <li class="list-group-item"><a href="${element.github}">${element.github}</a></li>
             </ul>
         </div>`;
             teamHtml = teamHtml.concat(temp);
@@ -57,7 +57,7 @@ function generateHtml(data) {
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Employee ID: ${element.empId}</li>
-                <li class="list-group-item">Email: ${element.empEmail}</li>
+                <li class="list-group-item">Email: <a href="mailto:${element.empEmail}">${element.empEmail}</a></li>
                 <li class="list-group-item">${element.school}</li>
             </ul>
         </div>`;
