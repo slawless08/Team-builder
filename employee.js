@@ -1,29 +1,25 @@
 class Employee {
     constructor(empName, empId, empEmail) {
-        this.name = empName;
-        this.id = empId; 
-        this.email = empEmail;
-    }
+        this.empName = empName;
+        this.empId = empId; 
+        this.empEmail = empEmail;
+    };
 
     getName(){
-        console.log(empName);
-        return empName
-    }
+        return this.empName;
+    };
 
     getId(){
-        console.log(empId);
-        return empId
-    }
+        return this.empId;
+    };
 
     getEmail(){
-        console.log(empEmail);
-        return empEmail
-    }
+        return this.empEmail;
+    };
 
     getRole(){
-        console.log("Employee");
-        return "Employee"
-    }
-}
+        return "Employee";
+    };
+};
 
 module.exports = Employee;
