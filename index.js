@@ -1,8 +1,9 @@
-const Engineer = require('../engineer');
-const Intern = require('../intern');
-const Manager = require('../manager');
+const Engineer = require('./engineer');
+const Intern = require('./intern');
+const Manager = require('./manager');
 const fs = require('fs');
 const inquirer = require("inquirer");
+const generateHtml = require('./generatehtml');
 
 
 const teamMembers = [];
@@ -28,10 +29,10 @@ const questionsIntern = [
     "What is the intern's school?"
 ];
 
-function generateHtml(filename, data) {
+function writeToFile(filename, data) {
     fs.writeFile(filename, data, (err) =>
         err ? console.log(err) : console.log("Created!"));
-}
+};
 
 function init() {
     console.log("Hello world!");
@@ -39,37 +40,37 @@ function init() {
     console.log("This program will ask you some questions to generate an html file that will display your team. Ready? Let's begin.");
 
     addManager();
-    addTeamMembers();
-}
+};
 
 function addManager() {
     inquirer
         .prompt([
             {
                 type: 'input',
-                name: 'managerName',
+                name: 'name',
                 message: questionsManager[0],
             },
             {
                 type: 'input',
-                name: 'managerID',
+                name: 'ID',
                 message: questionsManager[1],
             },
             {
                 type: 'input',
-                name: 'managerEmail',
+                name: 'email',
                 message: questionsManager[2],
             },
             {
                 type: 'input',
-                name: 'managerOfficeNumber',
+                name: 'office',
                 message: questionsManager[3],
             },
         ])
         .then((answers) => {
-            const teamManager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNumber);
+            const teamManager = new Manager(answers.name, answers.ID, answers.email, answers.office);
 
             teamMembers.push(teamManager);
+            addTeamMembers();
         })
 }
 
@@ -79,16 +80,17 @@ function addTeamMembers() {
     inquirer
         .prompt([
             {
-                type: 'List',
+                type: 'list',
                 name: 'addTeamMember',
                 message: 'Choose which team member you would like to add, or choose "Complete" if you are finished adding your team members.',
                 choices: ['Engineer', 'Intern', 'Complete'],
             }
         ])
         .then((answer) => {
-            if (answer === 'Engineer') {
+            console.log(answer);
+            if (answer.addTeamMember === 'Engineer') {
                 addEngineer();
-            } else if (answer === 'Intern') {
+            } else if (answer.addTeamMember === 'Intern') {
                 addIntern();
             }
             else {
@@ -103,27 +105,27 @@ function addEngineer() {
         .prompt([
             {
                 type: 'input',
-                name: 'engineerName',
+                name: 'name',
                 message: questionsEngineer[0],
             },
             {
                 type: 'input',
-                name: 'engineerID',
+                name: 'ID',
                 message: questionsEngineer[1],
             },
             {
                 type: 'input',
-                name: 'engineerEmail',
+                name: 'email',
                 message: questionsEngineer[2],
             },
             {
                 type: 'input',
-                name: 'engineerGithub',
+                name: 'github',
                 message: questionsEngineer[3],
             },
         ])
         .then((answers) => {
-            const teamEngineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub);
+            const teamEngineer = new Engineer(answers.name, answers.ID, answers.email, answers.github);
 
             teamMembers.push(teamEngineer);
             addTeamMembers();
@@ -136,27 +138,27 @@ function addIntern() {
         .prompt([
             {
                 type: 'input',
-                name: 'internName',
+                name: 'name',
                 message: questionsIntern[0],
             },
             {
                 type: 'input',
-                name: 'internID',
+                name: 'ID',
                 message: questionsIntern[1],
             },
             {
                 type: 'input',
-                name: 'internEmail',
+                name: 'email',
                 message: questionsIntern[2],
             },
             {
                 type: 'input',
-                name: 'internSchool',
+                name: 'school',
                 message: questionsIntern[3],
             },
         ])
         .then((answers) => {
-            const teamIntern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
+            const teamIntern = new Intern(answers.name, answers.ID, answers.email, answers.school);
 
             teamMembers.push(teamIntern);
             addTeamMembers();
@@ -165,5 +167,9 @@ function addIntern() {
 
 function endProgram(){
     console.log("Thank you for using this program! Your team page will now be generated...");
-    generateHtml('team.html', teamMembers);
+    console.log(teamMembers);
+    const myHTML = generateHtml(teamMembers);
+    writeToFile('team.html', myHTML);
 };
+
+init();
