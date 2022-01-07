@@ -1,9 +1,11 @@
 # Team-builder
 
 ## Description
-Team managers can use this to quickly view their team's information including email and GitHub profiles
+Node.JS application that generates an HTML file based on answers to prompted questions. Team managers can use this to quickly view their team's information including email and GitHub profiles.
 
+Usage of Node.JS prompts
 ![Screenshot of node.JS usage](example.PNG)
+Generated HTML
 ![Screenshot of generated HTML](exampleHTML.PNG)
 
 ## Table of Contents
